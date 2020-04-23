@@ -2,6 +2,8 @@ package com.wzw.demo.service;
 
 import com.wzw.demo.entity.User;
 
+import java.util.List;
+
 /**
  * @author ZhiWeng Wang
  * @Description:
@@ -13,4 +15,7 @@ public interface UserService {
     User findUserByUsername(String username);
 
     Boolean InsertUser(String username,String realname,String password);
+
+    User findUserById(int id);
+
 }

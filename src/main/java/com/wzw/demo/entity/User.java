@@ -1,5 +1,7 @@
 package com.wzw.demo.entity;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.Column;
@@ -50,8 +52,6 @@ public class User {
    public User(){
 
    }
-
-
     public int getId() {
         return id;
     }

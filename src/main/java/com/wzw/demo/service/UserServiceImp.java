@@ -45,5 +45,10 @@ public class UserServiceImp implements UserService {
        return true;
     }
 
+    @Override
+    public User findUserById(int id) {
+        return ud.findUserById(id);
+    }
+
 
 }

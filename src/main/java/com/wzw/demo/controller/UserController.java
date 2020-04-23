@@ -2,12 +2,16 @@ package com.wzw.demo.controller;
 
 import com.wzw.demo.entity.User;
 import com.wzw.demo.service.UserServiceImp;
+import com.wzw.demo.token.TokenService;
+import com.wzw.demo.token.UserLoginToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,12 +26,14 @@ public class UserController {
 
     @Resource
        private UserServiceImp usi;
+    @Autowired
+    TokenService tokenService;
      //登陆
     @RequestMapping(value = "/user/login",method = RequestMethod.POST)
-     public Map<String, Object> userLogin(HttpServletRequest request) {
+     public Map<String, Object> userLogin(HttpServletRequest request, HttpSession session) {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        Map<String,Object> map=new HashMap<>(2);
+        Map<String,Object> map=new HashMap<>(4);
         Boolean flag=false;
         User user=usi.findUserByUsername(username);
         if(user==null)
@@ -44,6 +50,8 @@ public class UserController {
         }
         else {
             flag = true;
+            String token=tokenService.getToken(user);
+            map.put("token",token);
             map.put("status", flag);
             map.put("message", "登陆成功");
             map.put("user", user);
@@ -78,5 +86,16 @@ public class UserController {
         map.put("status",false);
         map.put("message","用户名重复");
         return map;
+    }
+    @UserLoginToken
+    @RequestMapping(value = "/user/loginout",method = RequestMethod.POST)
+    public Boolean userLoginOut(HttpSession session) {
+
+        try {
+            System.out.println("你已通过验证");
+        }catch (Exception e){
+            return false;
+        }
+        return true;
     }
 }
