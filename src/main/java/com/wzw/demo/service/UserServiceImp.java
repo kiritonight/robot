@@ -33,8 +33,6 @@ public class UserServiceImp implements UserService {
         user.setUsername(username);
         user.setRealname(realname);
         user.setPassword(password);
-        user.setEmail(null);
-        user.setPhone(null);
         try{
             ud.save(user);
 
@@ -43,6 +41,18 @@ public class UserServiceImp implements UserService {
             return false;
         }
        return true;
+    }
+
+    @Override
+    public Boolean InsertUser(User user) {
+        try{
+            ud.save(user);
+
+        }catch (Exception e)
+        {
+            return false;
+        }
+        return true;
     }
 
     @Override

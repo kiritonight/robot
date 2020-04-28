@@ -16,6 +16,9 @@ public interface UserService {
 
     Boolean InsertUser(String username,String realname,String password);
 
+    Boolean InsertUser(User user);
+
     User findUserById(int id);
+
 
 }

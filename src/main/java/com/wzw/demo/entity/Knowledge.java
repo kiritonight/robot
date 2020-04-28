@@ -14,6 +14,7 @@ import static javax.persistence.GenerationType.AUTO;
  * @Date: Created in 11:162020/4/22/022
  * @Modified By:
  */
+//知识库类，存储系统所需知识
 @Entity
 public class Knowledge {
 

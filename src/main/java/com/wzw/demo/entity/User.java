@@ -21,6 +21,7 @@ import static javax.persistence.GenerationType.AUTO;
  * @Modified By:
  */
 //这是一个实体类，自动创建与实体类对应的表。
+//用户类
 @Entity
 public class User {
     //表示主键
