@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author ZhiWeng Wang
@@ -32,5 +33,15 @@ public class ProblemServiceImp implements ProblemService{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<Object> findAllProblem() {
+        return pd.findAllProblem();
+    }
+
+    @Override
+    public List<Object> findProblemById(int id) {
+        return pd.findProblemById(id);
     }
 }
