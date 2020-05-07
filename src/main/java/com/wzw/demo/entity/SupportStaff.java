@@ -74,4 +74,15 @@ public class SupportStaff {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "SupportStaff{" +
+                "id=" + id +
+                ", staffname='" + staffname + '\'' +
+                ", realname='" + realname + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }
