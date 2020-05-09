@@ -22,6 +22,8 @@ public interface ProblemDao extends JpaRepository<Problem,Integer> {
      List<Object> findAllProblem();
 
     //查找单个问题的详细信息
-    @Query(value = "SELECT p.tags,p.problemcontent,p.createtime,p.response,p.responsetime,u.username,s.staffname FROM problem p INNER JOIN user u ON p.userid=u.id LEFT JOIN support_staff s ON p.serviceid=s.id WHERE p.id=:id",nativeQuery = true)
-    List<Object> findProblemById(@Param("id") int problemid);
+    @Query(value = "SELECT p.tags,p.problemcontent,p.createtime,p.response,p.responsetime,u.username,s.staffname,p.id FROM problem p INNER JOIN user u ON p.userid=u.id LEFT JOIN support_staff s ON p.serviceid=s.id WHERE p.id=:id",nativeQuery = true)
+    List<Object> findProblemAndStaffById(@Param("id") int problemid);
+
+    Problem findProblemById(int id);
 }

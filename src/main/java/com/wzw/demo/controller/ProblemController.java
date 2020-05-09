@@ -1,7 +1,9 @@
 package com.wzw.demo.controller;
 
 import com.wzw.demo.entity.Problem;
+import com.wzw.demo.entity.SupportStaff;
 import com.wzw.demo.service.ProblemServiceImp;
+import com.wzw.demo.service.SupportStaffServiceImp;
 import com.wzw.demo.token.UserLoginToken;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +25,9 @@ import java.util.Map;
 public class ProblemController {
     @Resource
     private ProblemServiceImp psi;
+    @Resource
+    SupportStaffServiceImp sssi;
+
 
     private String[] tagsarray={"抗疫","5G","流量","充值","宽带","生活"};
 
@@ -44,8 +49,7 @@ public class ProblemController {
     }
 
     @RequestMapping(value = "/problem/index",method = RequestMethod.POST)
-    public Map<String,Object> findAllProblem(HttpServletRequest request)
-    {
+    public Map<String,Object> findAllProblem(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>(1);
         List<Object> problemList=psi.findAllProblem();
         map.put("problemlist",problemList);
@@ -53,11 +57,25 @@ public class ProblemController {
     }
 
     @RequestMapping(value = "/problem/get",method = RequestMethod.POST)
-    public List<Object> findProblemById(HttpServletRequest request)
-    {
+    public List<Object> findProblemById(HttpServletRequest request) {
         int id=Integer.parseInt(request.getParameter("id"));
         Map<String, Object> map = new HashMap<>(1);
-        List<Object> list=psi.findProblemById(id);
+        List<Object> list=psi.findProblemAndStaffById(id);
         return list;
+    }
+
+    @RequestMapping(value = "/problem/update",method = RequestMethod.POST)
+    public Boolean updateProblem(HttpServletRequest request) {
+        String content=request.getParameter("content");
+        int staffid=Integer.parseInt(request.getParameter("staffid"));
+        int problemid=Integer.parseInt(request.getParameter("problemid"));
+        SupportStaff staff=sssi.findStaffById(staffid);
+        Problem problem=psi.findProblemById(problemid);
+        Boolean flag=psi.updateProblem(problem,staff,content);
+        if(flag){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

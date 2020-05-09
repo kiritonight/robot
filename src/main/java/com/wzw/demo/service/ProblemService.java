@@ -1,6 +1,7 @@
 package com.wzw.demo.service;
 
 import com.wzw.demo.entity.Problem;
+import com.wzw.demo.entity.SupportStaff;
 
 import java.util.List;
 
@@ -16,5 +17,9 @@ public interface ProblemService {
 
     List<Object> findAllProblem();
 
-    List<Object> findProblemById(int id);
+    List<Object> findProblemAndStaffById(int id);
+
+    Problem findProblemById(int id);
+
+    Boolean updateProblem(Problem problem, SupportStaff staff,String Content);
 }
