@@ -12,7 +12,7 @@ import static javax.persistence.GenerationType.AUTO;
 
 /**
  * @author ZhiWeng Wang
- * @Description:
+ * @Description:在线回答问题类
  * @Date: Created in 9:502020/4/27/027
  * @Modified By:
  */

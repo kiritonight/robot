@@ -16,7 +16,7 @@ import static javax.persistence.GenerationType.AUTO;
 
 /**
  * @author ZhiWeng Wang
- * @Description:
+ * @Description:用户信息类
  * @Date: Created in 15:152020/4/21/021
  * @Modified By:
  */
